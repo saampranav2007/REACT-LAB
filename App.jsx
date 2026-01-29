@@ -1,42 +1,34 @@
-import React, { useState } from 'react'
+import React ,{useState} from 'react'
+function Calculator(){
+  const[num1,setNum1]=useState("")
+  const[num2,setNum2]=useState("")
 
-function App() {
-  const [tasks,settask]=useState([]);
-  const [text,settext]=useState("")
-  const addtask=()=>{
-      settask([...tasks ,{name:text, completed:false}])
-      settext("")
-   }
+  const a=Number(num1);
+  const b=Number(num2);
+        
+    return(
+        <div>
+            <h1 style={{textDecoration:"underline"}}>Calculator</h1>
+            <input type="number"placeholder='Enter the first value'
+            onChange={(e)=>setNum1(e.target.value)}/>
+            <input type="number"placeholder='enter the second value'
+            onChange={(e)=>setNum2(e.target.value)}/>
+            <div style={{height:"200px",
+              width:"300px",
+              border:"3px solid",
+              marginLeft:"550px",
+              marginTop:"20px",
+              backgroundColor:"lightblue",
+              textAlign:"left"}}>
+                <p><strong>Addition</strong>{a+b}</p>
+                <p><strong>Subtraction</strong>{a-b}</p>
+                <p><strong>Multiplication</strong>{a*b}</p>
+                <p><strong>Division</strong>
+                {b==0 ?"can't divided by zero":a/b}</p>
+              </div>
+            
 
-   const deletetask=(index)=>{
-    settask(tasks.filter((_,i)=>i !== index));
-   }
-
-  return (
-    <div>
-      <h1>to-do list</h1>
-      <input 
-      value={text}
-      onChange={(e)=>settext(e.target.value)}
-      placeholder='enter task'
-      />
-      <button onClick={addtask}>Add</button>
-
-      <ul>
-        {tasks.map((task,index)=>(
-          <li key={index}>
-            <input
-            type='checkbox'
-            checked={tasks.completed}
-            />
-            <span>{task.name}</span>
-            <button onClick={()=>deletetask(index)}
-            >delete</button>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
+        </div>
+    )
 }
-
-export default App
+export default Calculator
